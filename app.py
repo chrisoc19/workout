@@ -25,7 +25,7 @@ def get_exercise():
 @app.route('/add_exercise')
 def add_exercise():
     categories = mongo.db.categories.find()
-    return render_template('add-exercise.html', categories=categories)
+    return render_template('add_exercise.html', categories=categories)
 
 
 @app.route('/insert_exercise', methods=['POST'])
@@ -34,6 +34,13 @@ def insert_exercise():
     exercises.insert_one(request.form.to_dict())
     return render_template("exercises.html", exercises=mongo.db.exercise.find())
 
+
+@app.route('/edit_exercise/<exercise_id>')
+def edit_exercise(exercise_id):
+    the_exercise = mongo.db.exercise.find_one({"_id": ObjectId(exercise_id)})
+    all_categories = mongo.db.categories.find()
+    return render_template('edit_exercise.html', exercise=the_exercise,
+                           categories=all_categories)
 
 
 if __name__ == '__main__':
