@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="static/style.css" type="text/css" />
+</head>
+
+<body>
+<header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Workout App</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{url_for('go_home')}}">Home</a></li>
+                    <li><a href="{{url_for('get_exercise')}}">Exercises</a></li>
+                    <li><a href="#">Manage Categories</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">New Task</a></li>
+                    <li><a href="#">Manage Categories</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% block content %} 
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function() {
+            $('.collapsible').collapsible();
+            $('select').material_select();
+            $(".button-collapse").sideNav();
+        });
+        
+        window.onload = function () {
+    const pieces = document.getElementsByTagName('svg');
+    for (var i = 0; pieces.length; i++) {
+        let _piece = pieces[i];
+        _piece.onclick = function(t) {
+            if (t.target.getAttribute('data-position') != null) document.getElementById('data').innerHTML = t.target.getAttribute('data-position');
+            if (t.target.parentElement.getAttribute('data-position') != null) document.getElementById('data').innerHTML = t.target.parentElement.getAttribute('data-position');
+        }
+    }
+}
+    </script>
+    
+</body>
+
+</html>
