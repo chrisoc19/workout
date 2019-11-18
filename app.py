@@ -12,13 +12,28 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@app.route('/home_page')
+def go_home():
+    return render_template("home.html")
+
+
 @app.route('/get_exercise')
 def get_exercise():
     return render_template("exercises.html", exercises=mongo.db.exercise.find())
 
-@app.route('/home_page')
-def go_home():
-    return render_template("home.html")
+
+@app.route('/add_exercise')
+def add_exercise():
+    categories = mongo.db.categories.find()
+    return render_template('add-exercise.html', categories=categories)
+
+
+@app.route('/insert_exercise', methods=['POST'])
+def insert_exercise():
+    exercises = mongo.db.exercise
+    exercises.insert_one(request.form.to_dict())
+    return render_template("exercises.html", exercises=mongo.db.exercise.find())
+
 
 
 if __name__ == '__main__':
