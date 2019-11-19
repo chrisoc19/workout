@@ -16,6 +16,11 @@ mongo = PyMongo(app)
 def go_home():
     return render_template("home.html",categories=mongo.db.categories.find())
 
+@app.route('/shoulder')
+def shoulder():
+    return render_template("shoulder.html",categories=mongo.db.categories.find(),
+                           exercises=mongo.db.exercise.find())
+
 
 @app.route('/get_exercise')
 def get_exercise():
