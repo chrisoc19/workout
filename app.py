@@ -14,7 +14,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home_page')
 def go_home():
-    return render_template("home.html")
+    return render_template("home.html",categories=mongo.db.categories.find())
 
 
 @app.route('/get_exercise')
@@ -46,13 +46,24 @@ def edit_exercise(exercise_id):
 @app.route('/update_exercise/<exercise_id>', methods=["POST"])
 def update_exercise(exercise_id):
     exercise = mongo.db.exercise
-    exercise.update_one({'_id': ObjectId(exercise_id)}, {
+    exercise.update({'_id': ObjectId(exercise_id)}, {
         'category_name': request.form.get('category_name'),
         'exercise_name': request.form.get('exercise_name'),
         'exercise_description': request.form.get('exercise_description'),
         'is_urgent': request.form.get('is_urgent')
     })
     return redirect(url_for('get_exercise'))
+
+@app.route('/delete_exercise/<exercise_id>')
+def delete_exercise(exercise_id):
+    mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
+    return redirect(url_for('get_exercise'))
+
+
+@app.route('/get_categories')
+def get_categories():
+    return render_template('categories.html', 
+                           categories=mongo.db.categories.find())
 
 
 if __name__ == '__main__':
