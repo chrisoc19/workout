@@ -3,7 +3,7 @@
 {% block content %}
 <h3>Edit Exercise</h3>
 <div class="row">
-	<form action="{{ url_for('insert_exercise')}}" method="POST" class="col s12">
+	<form action="{{ url_for('update_exercise')}}" method="POST" class="col s12">
 		<div class="row">
 			<div class="row">
 				<div class="input-field col s12">
@@ -11,7 +11,11 @@
 					<select id="category" name="category_name">
                   <option value="" disabled selected>Choose Category</option>
                   {% for category in categories %}
-                      <option value="{{category.category_name}}">{{category.category_name}}</option>
+                        {% if category.category_name == exercise.category_name %}
+                            <option value="{{category.category_name}}" selected>{{category.category_name}}</option>
+                        {% else %}
+                            <option value="{{category.category_name}}">{{category.category_name}}</option>
+                        {% endif %}
                   {% endfor %}
                 </select>
 					<label>Task Category</label>
@@ -21,7 +25,7 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">assignment</i>
-					<input id="exercise_name" name="exercise_name" type="text" class="validate">
+					<input id="exercise_name" name="exercise_name" type="text" class="validate" value="{{exercise.exercise_name}}">
 					<label for="icon_prefix">Exercise Name</label>
 				</div>
 			</div>
@@ -29,7 +33,7 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">subject</i>
-					<textarea name="exercise_description" id="exercise_description" class="materialize-textarea"></textarea>
+					<textarea name="exercise_description" id="exercise_description" class="materialize-textarea">{{exercise.exercise_description}}</textarea>
 					<label for="icon_telephone">Exercise Description</label>
 				</div>
 			</div>
@@ -37,7 +41,11 @@
 				<!-- Switch -->
 				<div class="switch">
 					<label>
-      <input id="add_exercise" name="add_exercise" type="checkbox">
+                    {% if exercise.add_exercise %}
+      <input id="add_exercise" name="add_exercise" type="checkbox" checked>
+      {% else %}
+       <input id="add_exercise" name="add_exercise" type="checkbox" >
+      {% endif %}
       <span class="lever"></span>
       Added to your workout
     </label>

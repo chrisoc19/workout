@@ -43,6 +43,18 @@ def edit_exercise(exercise_id):
                            categories=all_categories)
 
 
+@app.route('/update_exercise/<exercise_id>', methods=["POST"])
+def update_exercise(exercise_id):
+    exercise = mongo.db.exercise
+    exercise.update_one({'_id': ObjectId(exercise_id)}, {
+        'category_name': request.form.get('category_name'),
+        'exercise_name': request.form.get('exercise_name'),
+        'exercise_description': request.form.get('exercise_description'),
+        'is_urgent': request.form.get('is_urgent')
+    })
+    return redirect(url_for('get_exercise'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
