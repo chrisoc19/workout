@@ -1,7 +1,8 @@
 body {
-    background-image: url("img3.jpg"); 
+    background-image: url("pic.png"); 
+    
     background-repeat: no-repeat;
- background-size: 100%;
+
 }
 .home{
     margin-top: 100px;
@@ -22,7 +23,7 @@ body {
 
 .btn_small {
     height: 24px;
-    width: 60px;
+    width: 78px;
     line-height: 24px;
     margin: 5px 5px;
     padding: 0 0.5em;
@@ -50,12 +51,12 @@ body {
     cursor: pointer;
 }
 .human-body svg:hover path {
-    fill: #000000;
+    fill: #ff7d16;
 }
 .human-body svg {
     position: absolute;
     left: 50%;
-    fill: #2d225e;
+    fill: #5f42de;;
 }
 .human-body svg.head {
     margin-left: -28.5px;

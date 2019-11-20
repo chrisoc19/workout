@@ -11,9 +11,9 @@
 	<header>
 		<nav>
 			<div class="nav-wrapper">
-				<a href="{{url_for('go_home')}}" class="brand-logo">Workout App</a>
+				<a href="{{url_for('go_home')}}" class="brand-logo center">Workout App</a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="{{url_for('go_home')}}">Home</a></li>
 					<li><a href="{{url_for('get_exercise')}}">Exercises</a></li>
 					<li><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
@@ -39,7 +39,8 @@
             $('select').material_select();
             $(".button-collapse").sideNav();
         });
-        
+  
+      
         window.onload = function () {
     const pieces = document.getElementsByTagName('svg');
     for (var i = 0; pieces.length; i++) {
