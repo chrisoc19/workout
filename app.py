@@ -14,15 +14,50 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home_page')
 def go_home():
-    return render_template("home.html",categories=mongo.db.categories.find())
+    return render_template("home.html", 
+                           categories=mongo.db.categories.find())
 
 
 @app.route('/shoulder')
 def shoulder():
     return render_template("shoulder.html",
-                           exercises=mongo.db.exercise.find({"category_name": "shoulders"}))
-                           
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Shoulders"}))
 
+
+@app.route('/abs')
+def abs():
+    return render_template("abs.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Abs"}))
+
+
+@app.route('/arms')
+def arms():
+    return render_template("arms.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Arm"}))
+
+
+@app.route('/chest')
+def chest():
+    return render_template("chest.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Chest"}))
+
+
+@app.route('/full')
+def full():
+    return render_template("full_body.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Full Body"}))
+
+
+@app.route('/legs')
+def legs():
+    return render_template("legs.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "legs"}))
 
 @app.route('/get_exercise')
 def get_exercise():
@@ -60,6 +95,7 @@ def update_exercise(exercise_id):
         'is_urgent': request.form.get('is_urgent')
     })
     return redirect(url_for('get_exercise'))
+
 
 @app.route('/delete_exercise/<exercise_id>')
 def delete_exercise(exercise_id):
