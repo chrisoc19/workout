@@ -94,13 +94,13 @@ def update_exercise(exercise_id):
         'exercise_description': request.form.get('exercise_description'),
         'is_urgent': request.form.get('is_urgent')
     })
-    return redirect(url_for('get_exercise'))
+    return redirect(url_for('go_home'))
 
 
 @app.route('/delete_exercise/<exercise_id>')
 def delete_exercise(exercise_id):
     mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
-    return redirect(url_for('get_exercise'))
+    return redirect(url_for('go_home'))
 
 
 @app.route('/get_categories')
