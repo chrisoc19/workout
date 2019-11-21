@@ -14,7 +14,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home_page')
 def go_home():
-    return render_template("home.html", 
+    return render_template("index.html", 
                            categories=mongo.db.categories.find())
 
 @app.route('/watch')
@@ -81,7 +81,7 @@ def add_exercise():
 def insert_exercise():
     exercises = mongo.db.exercise
     exercises.insert_one(request.form.to_dict())
-    return render_template("home.html", exercises=mongo.db.exercise.find())
+    return render_template("index.html", exercises=mongo.db.exercise.find())
 
 
 @app.route('/edit_exercise/<exercise_id>')
