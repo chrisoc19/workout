@@ -17,6 +17,13 @@ def go_home():
     return render_template("home.html", 
                            categories=mongo.db.categories.find())
 
+@app.route('/watch')
+def stop_watch():
+    return render_template("watch.html")
+
+@app.route('/login')
+def log_in():
+    return render_template("login.html")
 
 @app.route('/shoulder')
 def shoulder():
