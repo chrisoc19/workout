@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, jsonify, json 
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -23,6 +23,8 @@ def stop_watch():
 
 @app.route('/login')
 def log_in():
+    users = mongo.db.user
+    users.insert_one(request.form.to_dict())
     return render_template("login.html")
 
 @app.route('/shoulder')
@@ -114,7 +116,6 @@ def delete_exercise(exercise_id):
 def get_categories():
     return render_template('categories.html', 
                            categories=mongo.db.categories.find())
-
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
