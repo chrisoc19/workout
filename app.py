@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, jsonify, j
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'workout_app'
@@ -25,7 +26,8 @@ def stop_watch():
 def log_in():
     users = mongo.db.user
     users.insert_one(request.form.to_dict())
-    return render_template("login.html")
+    return render_template("login.html", users=mongo.db.user.find())
+
 
 @app.route('/shoulder')
 def shoulder():
@@ -107,7 +109,7 @@ def update_exercise(exercise_id):
 
 
 @app.route('/delete_exercise/<exercise_id>')
-def delete_exercise(exercise_id):
+def delete_exercise(exercise_id, ):
     mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
     return redirect(url_for('go_home'))
 
@@ -116,6 +118,7 @@ def delete_exercise(exercise_id):
 def get_categories():
     return render_template('categories.html', 
                            categories=mongo.db.categories.find())
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

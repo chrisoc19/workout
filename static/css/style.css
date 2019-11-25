@@ -8,10 +8,11 @@ color: white;
     font-family: Menlo;
 }
 nav.controls {
-    background-color: #333;
+   background: none;
+   border: none;
    
 }
-/* Stop watch */
+/*    Stop watch     */
 .container-controls {
   margin: 0;
   padding: 0;
@@ -55,6 +56,7 @@ width: 65%;
   height: 100%;
   line-height: 100vh;
   text-align: center;
+  background-image: url(stopwatch.jpg);
 }
 
 .results {
@@ -85,12 +87,10 @@ width: 65%;
     text-align: center;
 }
 .nav-wrapper {
-    background-color: #7D4E57!important;
+    background-color: #ee6e73!important;
 }
-
-.addbg{
-    background-color: #ffffff;
-    background-size: 100%;
+.container-add{
+    background-color: #ee6e73;
 }
 
 .btn{
@@ -188,40 +188,85 @@ width: 65%;
 }
 
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+/* The Login  */
+
+.body-login {
+background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(imglogin.jpg);
+height: 100vh;
+background-size: cover;
+background-position: center; 
+}
+.login_page {
+
+    width: 360px;
+    padding: 10% 0 0;
+    margin: auto;
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+.form{
+    position: relative;
+    z-index: 1;
+    background: rgba(7, 40, 195,0.8);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
 }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.form input {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    outline: 1;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.form button {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4caf50;
+    width: 100%;
+    border: 0;
+    color: #FFFFFF;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.form button:hover, .form button:active {
+    background: #43a047
+}
+
+.message {
+    margin: 15px 0 0 ;
+    color: aliceblue; 
+    font-size: 15px;
+}
+
+.message a{
+margin-left: 5px;
+color: #4caf50; 
+text-decoration: none;
+}
+
+.register-form{
+    display: none;
+}
+
+
+
+.body-add {
+background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(picadd.jpg);
+height: 100vh;
+background-size: cover;
+background-position: center; 
+font-size: 90px;
+font-family: 'Calistoga', cursive;
 }
