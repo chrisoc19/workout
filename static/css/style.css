@@ -2,7 +2,6 @@ body {
 background: #333;
 color: white;
 }
-
 .home-header{
     color: white;
     font-family: Menlo;
@@ -12,66 +11,69 @@ nav.controls {
    border: none;
    
 }
-/*    Stop watch     */
-.container-controls {
-  margin: 0;
-  padding: 0;
-}
-
-
-.container-controls {
-  background: #333;
-  color: #bbb;
-  font-family: Menlo;
-}
-
-.controls {
-position: fixed;
-text-align: center;
-top: 5em;
-width: 65%;
-}
-
-.button {
-  color: #bbb;
-  font-size: 4vw;
-  margin: 0 0.5em;
-  text-decoration: none;
-}
-
-.button:first-child {
-    margin-left: 0;
-}
-
-.button:last-child {
-    margin-right: 0;
-}
-
-.button:hover {
-  color: white;
-}
-
-.stopwatch {
-  font-size: 20vw;
-  height: 100%;
-  line-height: 100vh;
+body {
+  color: #DAD6D6;
+  background: #171A21;
   text-align: center;
-  background-image: url(stopwatch.jpg);
 }
 
-.results {
-  border-color: lime;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.li-text{
+    color:#43a047;
 }
-/*    */
+/* watch */
+#start {
+  margin: 40px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #48633B;
+  border:solid 2px #35492C;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+#stop {
+  margin: 40px 5px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #721329;
+  border:solid 2px #590F20;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+#clear {
+  margin: 40px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #564E58;
+  border:solid 2px #3E383F;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+h2
+{
+  font-size: 46px;
+  letter-spacing: 2px;
+  margin: 200px 0 0 ;
+}
 
 /* Card content*/
+
+.img-bg{
+
+    background-image: url(dumbbell.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+
+}
 .row .col.m6 {
     text-align: center;
     width: 50%;
@@ -263,10 +265,24 @@ text-decoration: none;
 
 
 .body-add {
+background-image:  linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url(weight-lifting-1284616_1920.jpg);
+height: 100vh;
+background-size: cover;
+background-position: center; 
+
+}
+
+.h3-add{
+    color: white;
+}
+
+.watch-body {
 background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(picadd.jpg);
 height: 100vh;
 background-size: cover;
 background-position: center; 
-font-size: 90px;
-font-family: 'Calistoga', cursive;
+
 }
