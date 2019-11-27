@@ -24,6 +24,7 @@ def stop_watch():
     return render_template("watch.html")
 
 
+
 @app.route('/login')
 def log_in():
     users = mongo.db.user

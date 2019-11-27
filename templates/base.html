@@ -15,21 +15,25 @@
     
         <nav>
             <div class="nav-wrapper">
-            <a href="{{url_for('go_home')}}" class="brand-logo center">Workout App</a>
+            <a href="{{url_for('go_home')}}" class="brand-logo center"><IMG class="mirror" SRC="static/css/favicon.png" ALT="some text">Workout<IMG SRC="static/css/favicon.png" ALT="some text" ></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('go_home')}}">Home</a></li>
-                    <li><a href="{{url_for('get_categories')}}">Categories</a></li>
-					<li><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
-                    <li><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
-                     <li><a href="{{url_for('log_in')}}">Log in </a></li>
+                
+                <ul id="nav-mobile" class= "hide-on-med-and-down">
+                    <li class="li-text"><a href="{{url_for('go_home')}}">Home</a></li>
+                    <li class="li-text"><a href="{{url_for('get_categories')}}">Categories</a></li>
+					<li class="li-text"><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
+                    <li class="li-text"><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
+                </ul>
+                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                     <li class="li-text"><a href="{{url_for('log_in')}}">Log in/register </a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                  <li><a href="{{url_for('go_home')}}">Home</a></li>
-                    <li><a href="{{url_for('get_categories')}}">Categories</a></li>
-					<li><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
-                    <li><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
-                     <li><a href="{{url_for('log_in')}}">Log in </a></li>
+              
+                  <li class="li-text"><a href="{{url_for('go_home')}}">Home</a></li> 
+                    <li class="li-text"><a href="{{url_for('get_categories')}}">Categories</a></li>
+					<li class="li-text"><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
+                    <li class="li-text"><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
+                     <li v><a href="{{url_for('log_in')}}">Log in/register </a></li>
                 </ul>
             </div>
         </nav>

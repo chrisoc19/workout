@@ -1,7 +1,5 @@
-body {
-background: #333;
-color: white;
-}
+
+
 
 
 
@@ -15,15 +13,16 @@ nav.controls {
    
 }
 body {
-  color: #DAD6D6;
-  background: #171A21;
+ background: linear-gradient(119deg, #de001f 60%, #e8d20d 55%);
+
   text-align: center;
 }
 
 .li-text{
-    color:#43a047;
+    font-family: 'Work Sans', sans-serif;
 }
 /* watch */
+
 #start {
   margin: 40px auto;
   text-align: center;
@@ -93,12 +92,9 @@ h2
 }
 
 .nav-wrapper {
-    background-color: #00d4ff!important;
+    background-color: #333535!important;
 }
 
-.container-add{
-    background-color: #ee6e73;
-}
 
 .btn{
         margin-left: 15px;
@@ -124,16 +120,18 @@ h2
     margin-top: 5px;
 }
 
-.home-header{
-    text-align: center;
-}
 
+/* Index.html */
 
 .index{
 background: url('training-828726_1920.jpg');
 height: 100vh;
 background-size: cover;
 background-position: center;
+}
+.mirror {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .human-body {
@@ -190,20 +188,6 @@ background-position: center;
 svg.hands:hover {
     
      fill: #5f42de;
-}
-#area {
-    display: block;
-    width: 100%;
-    clear: both;
-    padding: 10px;
-    text-align: center;
-    font-size: 25px;
-    font-family: Courier New;
-    color: #a5a5a5;
-}
-
-#area #data {
-    color: black;
 }
 
 
@@ -281,20 +265,8 @@ text-decoration: none;
 
 
 
-.body-add {
-background-image:  linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),url(weight-lifting-1284616_1920.jpg);
-height: 100vh;
-background-size: cover;
-background-position: center; 
 
-}
 
-.h3-add{
-    color: white;
-}
 
 .watch-body {
 background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(picadd.jpg);
@@ -302,4 +274,41 @@ height: 100vh;
 background-size: cover;
 background-position: center; 
 
+}
+
+
+
+.row .col {
+    display: inline-block;
+    float: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 .75rem;
+    min-height: 1px;
+}
+
+
+
+/* Add Page */
+.body-add {
+    
+background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(weight-lifting-1284616_1920.jpg);
+height: 100vh;
+background-size: cover;
+background-position: center; 
+
+}
+.add-box{
+    background: rgba(7, 40, 195,0.8);
+    font-family: "Roboto", sans-serif;
+    outline: 1;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    margin-top: 90px; 
+    box-sizing: border-box;
+
+}
+.h3-add{
+    color: white;
 }
