@@ -2,6 +2,9 @@ body {
 background: #333;
 color: white;
 }
+
+
+
 .home-header{
     color: white;
     font-family: Menlo;
@@ -88,9 +91,11 @@ h2
     margin-top: 100px;
     text-align: center;
 }
+
 .nav-wrapper {
     background-color: #00d4ff!important;
 }
+
 .container-add{
     background-color: #ee6e73;
 }
@@ -130,6 +135,7 @@ height: 100vh;
 background-size: cover;
 background-position: center;
 }
+
 .human-body {
     width: 207px;
     position: relative;

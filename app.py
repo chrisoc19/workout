@@ -15,12 +15,14 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home_page')
 def go_home():
-    return render_template("index.html", 
+    return render_template("index.html",
                            categories=mongo.db.categories.find())
+
 
 @app.route('/watch')
 def stop_watch():
     return render_template("watch.html")
+
 
 @app.route('/login')
 def log_in():
@@ -69,6 +71,7 @@ def legs():
     return render_template("legs.html",
                            exercises=mongo.db.exercise.find({
                                "category_name": "legs"}))
+
 
 @app.route('/get_exercise')
 def get_exercise():
@@ -122,5 +125,5 @@ def get_categories():
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
+            port=int("3005"),
             debug=True)
