@@ -147,13 +147,14 @@ background-position: center;
 .human-body svg:hover {
     cursor: pointer;
 }
+
 .human-body svg:hover path {
     fill: #ff7d16;
 }
 .human-body svg {
     position: absolute;
     left: 50%;
-    fill: #5f42de;;
+    fill: #5f42de;
 }
 .human-body svg.head {
     margin-left: -28.5px;
@@ -178,12 +179,17 @@ background-position: center;
 .human-body svg.legs {
     margin-left: -46.5px;
     top: 205px;
-    z-index: 9999;
+    
 }
 .human-body svg.hands {
     margin-left: -102.5px;
     top: 224px;
     
+}
+
+svg.hands:hover {
+    
+     fill: #5f42de;
 }
 #area {
     display: block;
