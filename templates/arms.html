@@ -1,16 +1,15 @@
 {% extends 'base.html'%} {% block content %}
-<h2>Arms</h2>
 {% for exercise in exercises %}
-<div class="col s12 m7">
-  
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="static/css/man.jpg">
-      </div>
-      <div class="card-stacked">
+<div class="row row-card">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="static/css/armspic.jpg">
+          <span class="card-title">{{exercise.category_name.capitalize()}} </span>
+        </div>
         <div class="card-content">
-          <p>{{exercise.exercise_name}}</p>
-          <p><p>{{exercise.exercise_description}}</p></p>
+          <span class="card-title">{{exercise.exercise_name}}</span>
+				<p>{{exercise.exercise_description}}</p>
         </div>
         <div class="card-action">
           	<a 

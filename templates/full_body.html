@@ -1,17 +1,15 @@
 {% extends 'base.html'%} {% block content %}
 {% for exercise in exercises %}
-
-
-<div class="col s12 m7">
-  <span class="card-title"><h2>{{exercise.category_name.capitalize()}}</h2></span>
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="https://lorempixel.com/100/190/nature/6">
-      </div>
-      <div class="card-stacked">
+<div class="row row-card">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="static/css/fullbodypic.jpg">
+          <span class="card-title">{{exercise.category_name.capitalize()}} </span>
+        </div>
         <div class="card-content">
-          <p>{{exercise.exercise_name}}</p>
-          <p><p>{{exercise.exercise_description}}</p></p>
+          <span class="card-title">{{exercise.exercise_name}}</span>
+				<p>{{exercise.exercise_description}}</p>
         </div>
         <div class="card-action">
           	<a 

@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, jsonify, json 
+import bcrypt
+from flask import Flask, render_template, redirect, request, url_for, jsonify, json, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -8,6 +9,9 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'workout_app'
 app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-fwzhc.mongodb.net/workout_app?retryWrites=true&w=majority'
+
+# this above is the Mongo URI
+
 
 mongo = PyMongo(app)
 
@@ -24,13 +28,39 @@ def stop_watch():
     return render_template("watch.html")
 
 
-
-@app.route('/login')
+# Methods to go into your app.route
+@app.route('/login', methods=['POST', 'GET'])
 def log_in():
-    users = mongo.db.user
-    users.insert_one(request.form.to_dict())
-    return render_template("login.html", users=mongo.db.user.find())
+    if request.method == 'POST':
+        users = mongo.db.users
+        login_user = users.find_one({'name' : request.form['name']})
+   
+        if login_user:
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+                session['username'] = request.form['username']
+            return redirect(url_for('go_home'))
 
+        return 'Invalid username/password combination'
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            session['username'] = request.form['username']
+            
+            return redirect(url_for('go_home'))
+        
+        return 'That username already exists!'
+
+    return render_template('login.html')
 
 @app.route('/shoulder')
 def shoulder():
@@ -125,6 +155,7 @@ def get_categories():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
     app.run(host=os.environ.get('IP'),
             port=int("3005"),
             debug=True)

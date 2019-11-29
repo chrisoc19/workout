@@ -2,18 +2,17 @@
 <body class="body-login">
 	<div class="login_page">
 		<div class="form">
-			<form class="register-form" method="POST">
+			<form class="register-form" method="POST" action="{{ url_for('register')}}">
              
-				<input id="user_name" name="user_name" type="text" class="validate" placeholder="user name"/>
-				<input id="password" name="password" type="text"  class="validate" placeholder="password"/>
-				<input id="email" name="email" type="text" placeholder="email"/>
+				<input id="user_name" name="username" type="text" class="validate" placeholder="user name"/>
+				<input id="password" name="pass" type="text"  class="validate" placeholder="password"/>
 				<button type="submit" name="action">Create</button>
 				<p class="message">Already registered?<a href="#">Log in</a></p>
 			</form>
 
 			<form class="login-form"action="{{ url_for('log_in')}}" method="POST">
-				<input id="user_name" type="text" placeholder="User Name"/>
-				<input id="password"type="password" placeholder="Password"/>
+				<input id="user_name" name="name" type="text" class="validate" placeholder="user name"/>
+				<input id="password" name="pass" type="password" placeholder="Password"/>
 				<button type="submit" name="action">Login </button>
 				<p class="message">Not registered?<a href="#">Register</a></p>
 			</form>
