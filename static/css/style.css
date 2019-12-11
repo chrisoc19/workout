@@ -1,8 +1,4 @@
 
-
-
-
-
 .home-header{
     color: white;
     font-family: Menlo;
@@ -12,8 +8,9 @@ nav.controls {
    border: none;
    
 }
+
 body {
- background: linear-gradient(119deg, #de001f 60%, #e8d20d 55%);
+ background: linear-gradient(119deg, #5f42de 60%, #ff7d16 55%);
 
   text-align: center;
 }
@@ -93,6 +90,10 @@ h2
 
 .nav-wrapper {
     background-color: #333535!important;
+}
+nav {
+    
+    background-color: #000000;
 }
 
 

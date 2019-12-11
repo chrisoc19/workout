@@ -16,31 +16,55 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-fwzhc.mong
 mongo = PyMongo(app)
 
 
-@app.route('/')
+
 @app.route('/home_page')
 def go_home():
-    return render_template("index.html",
-                           categories=mongo.db.categories.find())
+    try:
+        if session["username"]:
+                print(session["username"]) 
+                return render_template("index.html",
+                                categories=mongo.db.categories.find()
+                                ) 
+    except:
+        return render_template('login.html')
+        print("no user")
 
 
 @app.route('/watch')
 def stop_watch():
-    return render_template("watch.html")
+    try:
+        if session["username"]:
+            return render_template("watch.html")
+    except:
+        return render_template('login.html')
+        print("no user")
+
+    
 
 
 # Methods to go into your app.route
+@app.route('/')
 @app.route('/login', methods=['POST', 'GET'])
 def log_in():
+    try:
+        if session["username"]:
+            print(session["username"])  
+    except:
+        print("no user")
+
     if request.method == 'POST':
         users = mongo.db.users
-        login_user = users.find_one({'name' : request.form['name']})
-   
+        login_user = users.find_one({'name': request.form['name']})
+        print(login_user["name"])
+        print(login_user['password'])
         if login_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
-                session['username'] = request.form['username']
+           
+            session['username'] = login_user["name"]
+            print("Actually got here")
+            print(session["username"])   
             return redirect(url_for('go_home'))
 
-        return 'Invalid username/password combination'
+            return 'Invalid username/password combination'
     return render_template('login.html')
 
 
@@ -53,9 +77,9 @@ def register():
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            users.insert_one({'name' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
-            
+            print( session['username'])
             return redirect(url_for('go_home'))
         
         return 'That username already exists!'
@@ -71,14 +95,24 @@ def shoulder():
 
 @app.route('/abs')
 def abs():
-    return render_template("abs.html",
+    all_users = mongo.db.users.find()
+    return render_template("abs.html",  users=all_users,
                            exercises=mongo.db.exercise.find({
                                "category_name": "Abs"}))
 
 
+
+@app.route('/lo')
+def lo():
+    session.clear()
+    return redirect("home_page")
+
+
+
 @app.route('/arms')
 def arms():
-    return render_template("arms.html",
+    all_users = mongo.db.users.find()
+    return render_template("arms.html", users=all_users,
                            exercises=mongo.db.exercise.find({
                                "category_name": "Arm"}))
 
@@ -111,15 +145,27 @@ def get_exercise():
 
 @app.route('/add_exercise')
 def add_exercise():
-    categories = mongo.db.categories.find()
-    return render_template('add_exercise.html', categories=categories)
+    try:
+        if session["username"]:
+            session_user = (session['username'])
+            categories = mongo.db.categories.find()
+            print(session["username"]) 
+            return render_template('add_exercise.html', categories=categories)
+    except:
+        return render_template('login.html')
+        print("no user")
 
 
 @app.route('/insert_exercise', methods=['POST'])
 def insert_exercise():
+    print(session['username'])
+    session_user = (session['username'])
     exercises = mongo.db.exercise
     exercises.insert_one(request.form.to_dict())
+    print("added by: " + session_user)
     return render_template("index.html", exercises=mongo.db.exercise.find())
+   
+   
 
 
 @app.route('/edit_exercise/<exercise_id>')
@@ -150,8 +196,15 @@ def delete_exercise(exercise_id, ):
 
 @app.route('/get_categories')
 def get_categories():
-    return render_template('categories.html', 
+    try:
+        if session["username"]:
+             return render_template('categories.html', 
                            categories=mongo.db.categories.find())
+    except:
+        return render_template('login.html')
+        print("no user")
+
+   
 
 
 if __name__ == '__main__':
