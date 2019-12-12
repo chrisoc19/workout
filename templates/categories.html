@@ -1,17 +1,45 @@
 {% extends 'base.html'%} {% block content %}
 
-<body class="row img-bg">
+<body >
+<h1>Categories</h1>
+<div class="img-box">
+<a href="{{ url_for('full') }}"><img class="responsive-img"  src="static/css/muscles.jpg" alt="Full Body" style="width:100%"></a>
+<h4>Full Body</h4>
+</div>
 
-	<h3 class="home-header">Become the new you today!</h3>
- <ul class="collection with-header">
-        <li class="collection-header"><h4 class="li-text">Categories</h4></li>
-        <a href="{{ url_for('full') }}"><li class="collection-item li-text"><div><strong>Full body</strong> <a href="{{ url_for('full') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-        <a href="{{ url_for('shoulder') }}"><li class="collection-item li-text"><div><strong>Shoulders</strong><a href="{{ url_for('shoulder') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-       <a href="{{ url_for('chest') }}"> <li class="collection-item li-text"><div><strong>Chest</strong><a href="{{ url_for('chest') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-        <a href="{{ url_for('abs') }}"><li class="collection-item li-text"><div><strong>Abs</strong><a href="{{ url_for('abs') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-       <a href="{{ url_for('arms') }}"> <li class="collection-item li-text"><div><strong>Arms</strong><a href="{{ url_for('arms') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-        <a href="{{ url_for('legs') }}"><li class="collection-item li-text"><div><strong>Legs</strong><a href="{{ url_for('legs') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
-      </ul>
+
+<div class="row">
+  <div class="column">
+    <a href="{{ url_for('shoulder') }}"><img src="static/css/shoulder.jpg" alt="Shoulder" style="width:100%"></a>
+    <h4>Shoulder</h4>
+  </div>
+  <div class="column">
+    <a href="{{ url_for('arms') }}"><img src="static/css/armspic.jpg"  alt="Arms" style="width:100%"></a>
+    <h4>Arms</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <a href="{{ url_for('abs') }}"><img src="static/css/abs.jpg" alt="Abs" style="width:100%"></a>
+    <h4>Abs</h4>
+  </div>
+  <div class="column">
+    <a href="{{ url_for('chest') }}"><img src="static/css/chestpic.jpg"  alt="Chest" style="width:100%"></a>
+    <h4>Chest</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <a href="{{ url_for('legs') }}"><img src="static/css/legs.jpg"  alt="Legs" style="width:100%"></a>
+    <h4>Legs</h4>
+  </div>
+  <div class="column">
+    <a href="{{url_for('add_exercise')}}"><img src="static/css/dumbbell.jpg"  alt="dumbbell" style="width:100%"></a>
+    <h4>Add an Exercise</h4>
+  </div>
+</div>
 
 
 </body>

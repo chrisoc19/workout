@@ -1,0 +1,19 @@
+{% extends 'base.html'%} {% block content %}
+
+<body class="row img-bg">
+
+	<h3 class="home-header">Become the new you today!</h3>
+ <ul class="collection with-header">
+        <li class="collection-header"><h4 class="li-text">Categories</h4></li>
+        <a href="{{ url_for('full') }}"><li class="collection-item li-text"><div><strong>Full body</strong> <a href="{{ url_for('full') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+        <a href="{{ url_for('shoulder') }}"><li class="collection-item li-text"><div><strong>Shoulders</strong><a href="{{ url_for('shoulder') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+       <a href="{{ url_for('chest') }}"> <li class="collection-item li-text"><div><strong>Chest</strong><a href="{{ url_for('chest') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+        <a href="{{ url_for('abs') }}"><li class="collection-item li-text"><div><strong>Abs</strong><a href="{{ url_for('abs') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+       <a href="{{ url_for('arms') }}"> <li class="collection-item li-text"><div><strong>Arms</strong><a href="{{ url_for('arms') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+        <a href="{{ url_for('legs') }}"><li class="collection-item li-text"><div><strong>Legs</strong><a href="{{ url_for('legs') }}" class="secondary-content"><i class="material-icons">send</i></a></div></li></a>
+      </ul>
+
+
+</body>
+
+{% endblock %}

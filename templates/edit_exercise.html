@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h3>Edit Exercise</h3>
-<div class="row">
+<div class="row container-edit">
 	<form action="{{ url_for('update_exercise', exercise_id=exercise._id)}}" method="POST" class="col s12">
 		<div class="row">
 			<div class="row">
