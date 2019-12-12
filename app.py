@@ -21,13 +21,13 @@ mongo = PyMongo(app)
 def go_home():
     try:
         if session["username"]:
-                print(session["username"]) 
-                return render_template("index.html",
-                                categories=mongo.db.categories.find()
-                                ) 
+            return render_template("index.html",
+                categories=mongo.db.categories.find()
+                )
     except:
         return render_template('login.html')
         print("no user")
+    
 
 
 @app.route('/watch')
@@ -86,8 +86,8 @@ def register():
 
     return render_template('login.html')
 
-@app.route('/shoulder')
-def shoulder():
+@app.route('/shoulders')
+def shoulders():
     return render_template("shoulder.html",
                            exercises=mongo.db.exercise.find({
                                "category_name": "Shoulders"}))
@@ -109,8 +109,8 @@ def lo():
 
 
 
-@app.route('/arms')
-def arms():
+@app.route('/arm')
+def arm():
     all_users = mongo.db.users.find()
     return render_template("arms.html", users=all_users,
                            exercises=mongo.db.exercise.find({
@@ -178,20 +178,29 @@ def edit_exercise(exercise_id):
 
 @app.route('/update_exercise/<exercise_id>', methods=["POST"])
 def update_exercise(exercise_id):
+    excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
+    cat = excercise["category_name"]
+    cat = cat.lower()
+    if cat == "full body":
+        cat = "full"
     exercise = mongo.db.exercise
     exercise.update({'_id': ObjectId(exercise_id)}, {
         'category_name': request.form.get('category_name'),
         'exercise_name': request.form.get('exercise_name'),
         'exercise_description': request.form.get('exercise_description'),
-        'is_urgent': request.form.get('is_urgent')
     })
-    return redirect(url_for('go_home'))
+    return redirect(url_for(cat))
 
 
 @app.route('/delete_exercise/<exercise_id>')
-def delete_exercise(exercise_id, ):
+def delete_exercise(exercise_id):
+    excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
+    cat = excercise["category_name"]
+    cat = cat.lower()
+    if cat == "full body":
+        cat = "full"
     mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
-    return redirect(url_for('go_home'))
+    return redirect(url_for(cat))
 
 
 @app.route('/get_categories')
