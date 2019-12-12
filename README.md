@@ -1,10 +1,17 @@
-# Your Project's Name
-
-One or two paragraphs providing an overview of your project.
-
-Essentially, this part is your sales pitch.
- 
+# Workout
+This is a CRUD application, showcasing skills I have picked up whilst working with Python. The main point of this project is to showcase my understanding of CRUD operations and knowledge of the Flask framework.
 ## UX
+My wire frames were created in Balsamiq and can be found here:
+LINK MISSING
+
+This website is aimed at a few different types of users:
+
+1. Users who want to be able to store an online copy of their own Workout routines.
+2. Users who are looking for inspiration from others on what exercises they should do.
+3. Users looking to change and update the exercises.
+
+
+- As a user type, I want to perform an action, so that I can achieve a goal.
  
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
