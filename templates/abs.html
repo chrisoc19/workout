@@ -1,16 +1,16 @@
 {% extends 'base.html'%} {% block content %}
 
 {% for exercise in exercises %}
-{{ exercise }}
+
 <div class="row row-card">
     <div class="col s12 m7">
-      <div class="card">
+      <div class="card ">
         <div class="card-image">
           <img src="static/css/abs.jpg">
-          <span class="card-title">{{exercise.category_name.capitalize()}} - Added by:   
-          {% for users in users %}
-                     {{users.user_name}}
-                  {% endfor %}  </span>
+          <span class="card-title">{{exercise.category_name.capitalize()}} - Added by:  {{exercise.session_user}}
+          
+                     
+                   </span>
         </div>
         <div class="card-content">
           <span class="card-title">{{exercise.exercise_name}}</span>

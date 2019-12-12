@@ -16,7 +16,7 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-fwzhc.mong
 mongo = PyMongo(app)
 
 
-
+@app.route('/')
 @app.route('/home_page')
 def go_home():
     try:
@@ -43,7 +43,7 @@ def stop_watch():
 
 
 # Methods to go into your app.route
-@app.route('/')
+
 @app.route('/login', methods=['POST', 'GET'])
 def log_in():
     try:
