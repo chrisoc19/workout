@@ -9,9 +9,9 @@ if path.exists("env.py"):
     import env
 
 
-app = Flask(__name__)  
 
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  
+app = Flask(__name__)  
+app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-fwzhc.mongodb.net/workout_app?retryWrites=true&w=majority'
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME") 
 
 
@@ -228,7 +228,5 @@ if __name__ == '__main__':
     app.secret_key = 'super secret key'
 
     app.run(host=os.environ.get('IP'),
-
             port=(os.environ.get('PORT')),
-
             debug=True)
