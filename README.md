@@ -2,23 +2,18 @@
 This is a CRUD application, showcasing skills I have picked up whilst working with Python. The main point of this project is to showcase my understanding of CRUD operations and knowledge of the Flask framework.
 ## UX
 My wire frames were created in Balsamiq and can be found here:
+
 LINK MISSING
 
 This website is aimed at a few different types of users:
 
 1. Users who want to be able to store an online copy of their own Workout routines.
 2. Users who are looking for inspiration from others on what exercises they should do.
-3. Users looking to change and update the exercises.
+3. Users looking to add, change and update the exercises.
 
-
-- As a user type, I want to perform an action, so that I can achieve a goal.
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
-
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+- As a user, I want to be able to browse workout exercises.
+- As a user, I want to be able to add and edit workouts.
+- As a user, I want to be able to delete workout exercises.
 
 ## Features
 
