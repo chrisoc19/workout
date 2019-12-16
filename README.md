@@ -31,11 +31,18 @@ In addition, you may also use this section to discuss plans for additional featu
 - Another feature idea
 
 ## Technologies Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
+BootStrap - 
+- [Python](https://www.python.org/)
+    - The project uses **Python**.
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
+- [Materializecss](https://materializecss.com/)
+    - The project uses **Materializecss** to reduce the amount of SCSS and CSS coding that is necessary.
+- [Google Fonts ](https://fonts.google.com/)
+    - The project uses **Google Fonts**for displaying nice UX icons and text styles for the layout in the website.
+- [MongoDB](https://www.mongodb.com/)
+    - The project uses **MongoDB** for the backend on this project, I was considering MySQL but the control panel of MongoDB makes for a more user friendly experience for coding.
+-For Additional technologies used please see requirements.txt
 
 
 ## Testing
