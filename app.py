@@ -9,47 +9,17 @@ if path.exists("env.py"):
     import env
 
 
-
 app = Flask(__name__)  
 
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME") 
 
 
-
-# this above is the Mongo URI
-
-
 mongo = PyMongo(app)
 
 
+# Login Page
 @app.route('/')
-@app.route('/home_page')
-def go_home():
-    try:
-        if session["username"]:
-            return render_template("index.html",
-                categories=mongo.db.categories.find()
-                )
-    except:
-        print("No User")
-        # Should this be a render or a redirect?
-    return render_template('login.html')
-
-@app.route('/watch')
-def stop_watch():
-    try:
-        if session["username"]:
-            return render_template("watch.html")
-    except:
-        return render_template('login.html')
-        print("no user")
-
-    
-
-
-# Methods to go into your app.route
-
 @app.route('/login', methods=['POST', 'GET'])
 def log_in():
     try:
@@ -61,16 +31,17 @@ def log_in():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name': request.form['name']})
-        
+
         if login_user:
-           
+
             session['username'] = login_user["name"]
             print("Actually got here")
-            print(session["username"])   
+            print(session["username"])
+            print(request.form['pass'])  
             return redirect(url_for('go_home'))
 
-            return 'Invalid username/password combination'
-            # Should this be a render or a redirect?
+        return 'Invalid username/password combination'
+              
     return render_template('login.html')
 
 
@@ -86,105 +57,67 @@ def register():
             users.insert_one({'name' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
             print( session['username'])
+            print(hashpass)
             return redirect(url_for('go_home'))
-        
+
         return 'That username already exists!'
-        # Should this be a render or a redirect?
 
-    return render_template('login.html')
+    return redirect("login")
 
-@app.route('/shoulders')
-def shoulders():
-    return render_template("shoulder.html",
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "Shoulders"}))
-
-
-@app.route('/abs')
-def abs():
-    all_users = mongo.db.users.find()
-    return render_template("abs.html",  users=all_users,
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "Abs"}))
-
-
-
+# Log out
 @app.route('/lo')
 def lo():
     session.clear()
-    return redirect("home_page")
+    return redirect("login")
 
 
+# Home Page
 
-@app.route('/arm')
-def arm():
-    all_users = mongo.db.users.find()
-    return render_template("arms.html", users=all_users,
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "Arm"}))
+@app.route('/home_page')
+def go_home():
+    try:
+        if session["username"]:
+            return render_template("index.html",
+                categories=mongo.db.categories.find()
+                )
+    except:
+        print("No User")
 
+    return redirect("login")
 
-@app.route('/chest')
-def chest():
-    return render_template("chest.html",
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "Chest"}))
-
-
-@app.route('/full')
-def full():
-    return render_template("full_body.html",
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "Full Body"}))
-
-
-@app.route('/legs')
-def legs():
-    return render_template("legs.html",
-                           exercises=mongo.db.exercise.find({
-                               "category_name": "legs"}))
-
-
+# Gets a exercise
 @app.route('/get_exercise')
 def get_exercise():
     return render_template("exercises.html", exercises=mongo.db.exercise.find())
 
-
+# Calls the add exercise page
 @app.route('/add_exercise')
 def add_exercise():
     try:
         if session["username"]:
-            session_user = (session['username'])
             categories = mongo.db.categories.find()
             print(session["username"]) 
             return render_template('add_exercise.html', categories=categories)
     except:
-        # Should this be a render or a redirect?
-        return render_template('login.html')
+        return redirect("login")
+
         print("no user")
 
-
+# Adds a exercise to database
 @app.route('/insert_exercise', methods=['POST'])
 def insert_exercise():
-    print(session['username'])
     session_user = (session['username'])
     exercises = mongo.db.exercise
-    exercises.insert_one(request.form.to_dict())
-    print("added by: " + session_user)
-    # Should this be a render or a redirect?
+    to_insert = request.form.to_dict()
+    to_insert['session_user'] = session_user
+    exercises.insert_one(to_insert)
+
     return render_template("index.html", exercises=mongo.db.exercise.find())
-   
-   
 
 
-@app.route('/edit_exercise/<exercise_id>')
-def edit_exercise(exercise_id):
-    the_exercise = mongo.db.exercise.find_one({"_id": ObjectId(exercise_id)})
-    all_categories = mongo.db.categories.find()
-    return render_template('edit_exercise.html', exercise=the_exercise,
-                           categories=all_categories)
 
 
+# Updates the database
 @app.route('/update_exercise/<exercise_id>', methods=["POST"])
 def update_exercise(exercise_id):
     excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
@@ -200,7 +133,18 @@ def update_exercise(exercise_id):
     })
     return redirect(url_for(cat))
 
+# Removes exercise from the database for My WORKOUT
+@app.route('/delete/<exercise_id>')
+def delete(exercise_id):
+    mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
+    exercises = mongo.db.exercise
+    if exercises.find({"session_user": session['username']}).count() == 0:
+        return redirect(url_for("add_exercise"))
+    else:
+        return redirect(url_for("profile"))
+    
 
+# Removes exercise from the database
 @app.route('/delete_exercise/<exercise_id>')
 def delete_exercise(exercise_id):
     excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
@@ -211,17 +155,94 @@ def delete_exercise(exercise_id):
     mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
     return redirect(url_for(cat))
 
-
+# gets all categories
 @app.route('/get_categories')
 def get_categories():
     try:
         if session["username"]:
-             return render_template('categories.html', 
-                           categories=mongo.db.categories.find())
+            return render_template('categories.html',
+                        categories=mongo.db.categories.find())
     except:
         # Should this be a render or a redirect?
         return render_template('login.html')
-        
+
+
+# Calls the edit exercise page
+@app.route('/edit_exercise/<exercise_id>')
+def edit_exercise(exercise_id):
+    the_exercise = mongo.db.exercise.find_one({"_id": ObjectId(exercise_id)})
+    all_categories = mongo.db.categories.find()
+    return render_template('edit_exercise.html', exercise=the_exercise,
+                           categories=all_categories)
+
+# -------------------------------------------- Body workouts
+
+# User profile
+
+@app.route('/profile')
+def profile():
+    exercises = mongo.db.exercise
+    if exercises.find({"session_user": session['username']}).count() == 0:
+        return redirect("add_exercise")
+    else:
+        return render_template("profile.html", exercises=mongo.db.exercise.find({
+                               "session_user": session['username']}))
+
+
+# Shoulder
+@app.route('/shoulders')
+def shoulders():
+    return render_template("shoulder.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Shoulders"}))
+
+# Abs
+@app.route('/abs')
+def abs():
+    all_users = mongo.db.users.find()
+    return render_template("abs.html",  users=all_users,
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Abs"}))
+
+# Arm
+@app.route('/arm')
+def arm():
+    all_users = mongo.db.users.find()
+    return render_template("arms.html", users=all_users,
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Arm"}))
+
+# Chest
+@app.route('/chest')
+def chest():
+    return render_template("chest.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Chest"}))
+
+# Full Body
+@app.route('/full')
+def full():
+    return render_template("full_body.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "Full Body"}))
+
+# Legs
+@app.route('/legs')
+def legs():
+    return render_template("legs.html",
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "legs"}))
+
+
+# StopWatch Page
+@app.route('/watch')
+def stop_watch():
+    try:
+        if session["username"]:
+            return render_template("watch.html")
+    except:
+        return render_template('login.html')
+        print("no user")
 
 
 if __name__ == '__main__':

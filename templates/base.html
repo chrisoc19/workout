@@ -5,9 +5,10 @@
 
 <meta name="viewport" content="width=device-width">
 <link rel="icon" type="image/png" sizes="32x32" href="static/css/favicon.png">
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+<script type="text/javascript" src="static/javascript.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,7 @@
                 <ul id="nav-mobile" class= "hide-on-med-and-down">
                     <li class="li-text"><a href="{{url_for('go_home')}}">Home</a></li>
                     <li class="li-text"><a href="{{url_for('get_categories')}}">Categories</a></li>
+                    <li class="li-text"><a href="{{url_for('profile')}}">My Workouts</a></li>
 					<li class="li-text"><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
                     <li class="li-text"><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
                 </ul>
@@ -31,6 +33,7 @@
               
                   <li class="li-text"><a href="{{url_for('go_home')}}">Home</a></li> 
                     <li class="li-text"><a href="{{url_for('get_categories')}}">Categories</a></li>
+                    <li class="li-text"><a href="{{url_for('profile')}}">My Workouts</a></li>
 					<li class="li-text"><a href="{{url_for('add_exercise')}}">Add a Exercise!</a></li>
                     <li class="li-text"><a href="{{url_for('stop_watch')}}">Stop watch</a></li>
                      <li v><a href="{{url_for('log_in')}}">Log in/register </a></li>
@@ -53,7 +56,11 @@
             $('.collapsible').collapsible();
             $('select').material_select();
             $(".button-collapse").sideNav();
+                    document.getElementById("matfix").addEventListener("click", function(e) {
+            e.stopPropagation();
         });
+        });
+
   
       
         window.onload = function () {

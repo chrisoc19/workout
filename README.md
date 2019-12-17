@@ -11,6 +11,7 @@ This website is aimed at a few different types of users:
 2. Users who are looking for inspiration from others on what exercises they should do.
 3. Users looking to add, change and update the exercises.
 
+- As a user, I want to be able to Log in and out.
 - As a user, I want to be able to browse workout exercises.
 - As a user, I want to be able to add and edit workouts.
 - As a user, I want to be able to delete workout exercises.
