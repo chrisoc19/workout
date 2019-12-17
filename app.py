@@ -20,27 +20,25 @@ mongo = PyMongo(app)
 
 # Login Page
 @app.route('/')
+
 @app.route('/login', methods=['POST', 'GET'])
 def log_in():
-    try:
-        if session["username"]:
-            print(session["username"])  
-    except:
-        print("no user")
-
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name': request.form['name']})
+        hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+        print(request.form['name'])
+        print(hashpass)
 
         if login_user:
-
-            session['username'] = login_user["name"]
-            print("Actually got here")
-            print(session["username"])
-            print(request.form['pass'])  
-            return redirect(url_for('go_home'))
-
-        return 'Invalid username/password combination'
+            print(login_user['password'])
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password']:
+                session['username'] = login_user["name"]
+                print("Actually got here")
+                print(session["username"])
+                print(request.form['pass'])  
+                return redirect(url_for('go_home'))
+        return render_template('login.html')
               
     return render_template('login.html')
 
