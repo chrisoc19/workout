@@ -30,9 +30,9 @@ def log_in():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name': request.form['name']})
-        hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+        bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
         print(request.form['name'])
-        print(hashpass)
+        
 
         if login_user:
             print(login_user['password'])
