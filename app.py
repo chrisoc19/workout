@@ -1,6 +1,7 @@
 import os
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for, jsonify, json, session
+import sys
+from flask import Flask, render_template, redirect, request, url_for, jsonify, json, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -8,7 +9,7 @@ from os import path
 if path.exists("env.py"):
     import env
 
-
+sys.setrecursionlimit(1500)
 app = Flask(__name__)  
 
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  
@@ -17,6 +18,9 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 
 mongo = PyMongo(app)
 
+@app.route('/error')
+def error():
+    return render_template('error.html')
 
 # Login Page
 @app.route('/')
@@ -38,7 +42,8 @@ def log_in():
                 print(session["username"])
                 print(request.form['pass'])  
                 return redirect(url_for('go_home'))
-        return render_template('login.html')
+        flash('Invalid username or password')
+        
               
     return render_template('login.html')
 
@@ -58,7 +63,8 @@ def register():
             print(hashpass)
             return redirect(url_for('go_home'))
 
-        return 'That username already exists!'
+        flash('That username already exsits')
+        
 
     return redirect("login")
 
@@ -179,13 +185,20 @@ def edit_exercise(exercise_id):
 
 @app.route('/profile')
 def profile():
-    exercises = mongo.db.exercise
-    if exercises.find({"session_user": session['username']}).count() == 0:
-        return redirect("add_exercise")
-    else:
-        return render_template("profile.html", exercises=mongo.db.exercise.find({
-                               "session_user": session['username']}))
+    try:
+        if session["username"]:
+            exercises = mongo.db.exercise
+            if exercises.find({"session_user": session['username']}).count() == 0:
+                return redirect("add_exercise")
+            else:
+                return render_template("profile.html", exercises=mongo.db.exercise.find({
+                                    "session_user": session['username']}))
 
+    except:
+        print("No User")
+
+    return redirect("login")
+   
 
 # Shoulder
 @app.route('/shoulders')

@@ -1,4 +1,5 @@
 {% extends 'base.html'%} {% block content %}
+
 <body class="body-login">
 	<div class="login_page">
 		<div class="form">
@@ -8,13 +9,29 @@
 				<button type="submit" name="action">Create</button>
 				<p class="message">Already registered?<a href="#">Log in</a></p>
 			</form>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
 
+			{% for message in messages %}
+			
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+
+			{% endfor %}
+
+			{% endif %}
+
+			{% endwith %}
 			<form class="login-form" action="{{ url_for('log_in')}}" method="POST">
 				<input id="user_name" name="name" type="text" class="validate" placeholder="user name"/>
 				<input id="password" name="pass" type="password" placeholder="Password"/>
 				<button type="submit" name="action"  >Login </button>
 				<p class="message">Not registered?<a href="#">Register</a></p>
-                
+
 			</form>
 		</div>
 	</div>
@@ -23,7 +40,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
-function sweet(){
+	function sweet(){
 Swal.fire({
   title: 'Invailed Username or Password',
   text: "Please try again",
@@ -36,10 +53,9 @@ Swal.fire({
 
 </script>
 
-    <script>
-
-    $('.message a').click(function(){
+<script>
+	$('.message a').click(function(){
     $('form').animate({height: "toggle", opacity: "toggle"},);
     });
-    </script>
+</script>
 {% endblock %}
