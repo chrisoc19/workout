@@ -33,8 +33,8 @@ def log_in():
         
 
         if login_user:
-            print(login_user['password'])
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password']:
+           
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = login_user["name"]
                 print("Actually got here")
                 print(session["username"])
