@@ -1,5 +1,6 @@
 # Workout
 This is a CRUD application, showcasing skills I have picked up whilst working with Python. The main point of this project is to showcase my understanding of CRUD operations and knowledge of the Flask framework.
+## Milestone Project 3
 ## UX
 My wire frames were created in Balsamiq and can be found here:
 
@@ -17,22 +18,25 @@ This website is aimed at a few different types of users:
 - As a user, I want to be able to delete workout exercises.
 
 ## Features
+The main Features of this website will be CRUD, so to be able to Create, Read, Update and Delete from an existing database of information. There is also a way for the User to register and login, When a User is logged in the section My Workouts will display any workouts added or edited by that user.
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
-
+- Feature 1 - The user is met with a Log in form which allows users to login or register for access to site.
+- Feature 2 - Once the user is logged in, They can access the rest of the site and are redirected to the Home page.
+- Feature 3 - Nav Bar - On the top of the website the User can find a nav bar which is used to navagate to diffrent parts of the site. On moblie it is a dropdown side nav bar.
+- Feature 4 - Home page - On the home page the user is met with a svg image of a body which lights up different body parts when hovering over them with the mouse and on click which take the user to that body part section.   
+- Feature 5 - Categories - On the Categories page the User is met with diffrent clickable images and on click which take the user to that body part section. This function is similar to the svg imageson the Home page.
+- Feature 6 - My Workouts - On the MY Workout page, the User is met with any exercises that User has added or edited. If this page is empty the user is redirected to the Add a workout page.
+- Feature 7 - Add a Exercise - On the Add a exercise page, The user is met with a form with three sections, A drop down menu where the user can choose which body part they want to add an exercise for, A short section to give the Exercise a name and a bigger section to add an exercise description. At the bottom of the form there is a submitbutton which adds the exercise to the database.
+- Feature 8 - Exercises - Once a User adds a workout they are displayed in a Materializecss Card and shows the Body part name it is realated to, the Username of who added it, the exercise name and the description. There are too buttons an edit and delete button.
+- Feature 9 - Edit an Exercise - If the user clicks on the edit button at the bottom of every exercise, they are taken to the edit workout page which has a form similar to Add a workout, the difference is that the edit form comes with some information already added as the user is updating an exercise not creating a new exercise.
+- Feature 10 - Delete an Exercise - If the user clicks on the delete button at the bottom of every exercise. A pop up message with a confirm button appears and if the user clicks ok the exercise is then removed from the database.
+- Feature 11 - Stop watch - On the Stop watch page, There is a simple javascript counter which the user can start, stop and reset the timer. I added this so the user can keep track of how long the exercise took to complete.
+- Feature 12 - Log out - If the user clicks on login/out in the nav bar it removes the session user redirects to the login page. The user then must log back in to access the site.
 ### Features Left to Implement
 - Another feature idea
 
 ## Technologies Used
-BootStrap - 
+
 - [Python](https://www.python.org/)
     - The project uses **Python**.
 - [JQuery](https://jquery.com)
@@ -81,11 +85,14 @@ In addition, if it is not obvious, you should also describe how to run your code
 ## Credits
 
 ### Content
+- The svg body image from the home page was found on  [Code Pen](https://codepen.io/volcanioo/pen/RLXOar)
+- The stopwatch was found on [Code Pad](https://codepad.co/snippet/javascript-stopwatch-using-javascript-and-css)
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 
 ### Media
-- The photos used in this site were obtained from ...
+- The photos used in this site were obtained from [Pixabay](https://pixabay.com/)
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- I received inspiration for this project from an iphone app called workout
+
