@@ -42,7 +42,7 @@ def log_in():
                 return redirect(url_for('go_home'))
         flash('Invalid username or password')
         
-              
+           
     return render_template('login.html')
 
 
@@ -69,8 +69,16 @@ def register():
 # Log out
 @app.route('/lo')
 def lo():
-    session.clear()
-    return redirect("login")
+    try:
+        if session["username"]:
+            session.clear()
+            flash('logout successful')
+        return redirect("login")
+    except:
+        print("No User")
+        flash('Please login')
+        return redirect("login")
+    
 
 
 # Home Page
@@ -84,7 +92,7 @@ def go_home():
                 )
     except:
         print("No User")
-
+    flash('Please login')
     return redirect("login")
 
 # Gets a exercise
@@ -101,6 +109,7 @@ def add_exercise():
             print(session["username"]) 
             return render_template('add_exercise.html', categories=categories)
     except:
+        flash('Please login')
         return redirect("login")
 
         print("no user")
@@ -114,7 +123,7 @@ def insert_exercise():
     to_insert['session_user'] = session_user
     exercises.insert_one(to_insert)
 
-    return render_template("index.html", exercises=mongo.db.exercise.find())
+    return redirect(url_for("go_home"))
 
 
 
@@ -122,8 +131,9 @@ def insert_exercise():
 # Updates the database
 @app.route('/update_exercise/<exercise_id>', methods=["POST"])
 def update_exercise(exercise_id):
-    excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
-    cat = excercise["category_name"]
+    exercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
+    print(exercise)
+    cat = exercise["category_name"]
     cat = cat.lower()
     if cat == "full body":
         cat = "full"
@@ -132,15 +142,23 @@ def update_exercise(exercise_id):
         'category_name': request.form.get('category_name'),
         'exercise_name': request.form.get('exercise_name'),
         'exercise_description': request.form.get('exercise_description'),
+        'session_user' : (session['username'])
     })
-    return redirect(url_for(cat))
+    return redirect(url_for("profile"))
 
 # Removes exercise from the database for My WORKOUT
 @app.route('/delete/<exercise_id>')
 def delete(exercise_id):
-    mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
-    exercises = mongo.db.exercise
-    if exercises.find({"session_user": session['username']}).count() == 0:
+    exercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
+    print("finding exercise")
+    print(exercise)
+    cat = exercise["category_name"]
+    cat = cat.lower()
+    if cat == "full body":
+        cat = "full"
+    exercise = mongo.db.exercise
+    mongo.db.exercise.delete_one({'_id': ObjectId(exercise_id)})
+    if exercise.find({"session_user": session['username']}).count() == 0:
         return redirect(url_for("add_exercise"))
     else:
         return redirect(url_for("profile"))
@@ -149,12 +167,13 @@ def delete(exercise_id):
 # Removes exercise from the database
 @app.route('/delete_exercise/<exercise_id>')
 def delete_exercise(exercise_id):
-    excercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
-    cat = excercise["category_name"]
+    exercise = mongo.db.exercise.find_one({'_id': ObjectId(exercise_id)})
+    print(exercise)
+    cat = exercise["category_name"]
     cat = cat.lower()
     if cat == "full body":
         cat = "full"
-    mongo.db.exercise.remove({'_id': ObjectId(exercise_id)})
+    mongo.db.exercise.delete_one({'_id': ObjectId(exercise_id)})
     return redirect(url_for(cat))
 
 # gets all categories
@@ -165,7 +184,7 @@ def get_categories():
             return render_template('categories.html',
                         categories=mongo.db.categories.find())
     except:
-        # Should this be a render or a redirect?
+        flash('Please login')
         return render_template('login.html')
 
 
@@ -173,6 +192,7 @@ def get_categories():
 @app.route('/edit_exercise/<exercise_id>')
 def edit_exercise(exercise_id):
     the_exercise = mongo.db.exercise.find_one({"_id": ObjectId(exercise_id)})
+    print(the_exercise)
     all_categories = mongo.db.categories.find()
     return render_template('edit_exercise.html', exercise=the_exercise,
                            categories=all_categories)
@@ -193,6 +213,7 @@ def profile():
                                     "session_user": session['username']}))
 
     except:
+        flash('Please login')
         print("No User")
 
     return redirect("login")
@@ -250,6 +271,7 @@ def stop_watch():
         if session["username"]:
             return render_template("watch.html")
     except:
+        flash('Please login')
         return render_template('login.html')
         print("no user")
 

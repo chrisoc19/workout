@@ -18,8 +18,8 @@
         </div>
         <div class="card-action">
 
-          	<a 
-					class="waves-effect waves-light btn btn_small" onclick="sweet();">Delete</a>
+          	<a  
+					class="waves-effect waves-light btn btn_small " onclick="sweet();">Delete</a>
                     
 				<a href="{{url_for('edit_exercise', exercise_id=exercise._id)}}"
 					class="waves-effect waves-light btn btn_small blue" >Edit</a>
@@ -33,6 +33,7 @@
 
 <script>
 function sweet(){
+
 Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -43,6 +44,7 @@ Swal.fire({
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.value) {
+    
  function loadHomePage() {
     window.location.assign("{{url_for('delete', exercise_id=exercise._id)}}");
     

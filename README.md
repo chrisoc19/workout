@@ -47,6 +47,7 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
     - The project uses **Google Fonts**for displaying nice UX icons and text styles for the layout in the website.
 - [MongoDB](https://www.mongodb.com/)
     - The project uses **MongoDB** for the backend on this project, I was considering MySQL but the control panel of MongoDB makes for a more user friendly experience for coding.
+
 -For Additional technologies used please see requirements.txt
 
 
