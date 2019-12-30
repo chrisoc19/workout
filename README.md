@@ -115,14 +115,25 @@ An interesting bug I found was that if the user added an exercise with an empty 
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+The project has been deployed on Heroku to host the site, and all git changes can be seen on my github profile. My deployed version will not have the following code:
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+if __name__ == '__main__':
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+    app.secret_key = 'super secret key'
+
+    app.run(host=os.environ.get('IP'),
+            port=(os.environ.get('PORT')),
+            debug=True)
+
+As this enables the user to see any potential bugs on the site and exploit this. Environment variables were stored in env.py  and I used .gitignore to prevent malicious coders from exploiting my database.
+
+### Deploying Locally
+    1. Git Clone this application into an IDE or onto a workspace on your computer.
+    2. Ensure python3 and pip are installed on your machine
+    3. Run $ pip3 install -r requirements.txt.
+    4. Create a mongodb username and login. Create yourself a database and a cluster to start using the information on the application.
+    5. Modify your env.py with your mongodb username + Password in MONGO_DBNAME and MONGO_URI
+    You now have access to the database, the app should be able to run through any data you give it as long as the routing is correct.
 
 
 ## Credits
