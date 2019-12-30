@@ -33,7 +33,7 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 - Feature 11 - Stop watch - On the Stop watch page, There is a simple javascript counter which the user can start, stop and reset the timer. I added this so the user can keep track of how long the exercise took to complete.
 - Feature 12 - Log out - If the user clicks on login/out in the nav bar it removes the session user redirects to the login page. The user then must log back in to access the site.
 ### Features Left to Implement
-- Another feature idea
+- In the future I would like to add User restrictions, For example if the Session User is not the same as the user who added the exercise then that user will not be able to edit or delete the exercise.
 
 ## Technologies Used
 
@@ -53,23 +53,65 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+1. login form:
+    1. Go to the "login" page
+    2. Try to navigate else where before logging in and verify that a  "Please log in" error message appears.
+    3. Try to submit the form with an invalid username or password and verify that a "Invalid username or password" error message appears.
+    4. Try to submit the form with all inputs valid and verify a redirect to home page happens.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+    register form:
+    1. Go to the "login" page.
+    2. Try to register a username that is already in use and verify that a  "That username already exsits" error message appears.
+    3. Try to submit the form with all inputs valid and verify a redirect to home page happens.
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
 
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
+2. Home page:
+    1. Go to the "Home" page
+    2. Hover the mouse over the body image and verify that each body part changes color.
+    3. When the user clicks on a body part it takes you to the page associated with that body part.
+   
+3. Categories page:
+    1. Go to the "Categories" page.
+    2. Tested to see that all images have rendered and are clickable.
+    3. When the user clicks on a image it takes you to the page associated with that body part.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+4. My workout:
+    1. Go to the "My workout" page
+    2. Test to see if any exercises added or edited by that user are rendered here.
+    3. When the user clicks the edit button on an exercise it opens the edit exercise page.
+    4. When a User clicks the delete button it removes the exercise from the database.
+    5. If "My workouts" is empty the user is redirected to the "Add an exercise page".
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+5. Add an exercise form:
+    1. Go to the "Add an exercise" page.
+    2. Try to choose a category and verify that the drop down menu works and the correct categories are rendered as options.
+    3. Try to add an exercise name and verify that the user can add an exercise name.
+    4. Try to add an exercise description and verify that the user can add an exercise description.
+    5. Try to submit the form with any empty fields and confirm an error message appears.
+    6. Try to submit and confirm that the exercise has been added to the database.
+    7. Confirm user is redirected to the "My workouts" page.
+    
+6. Edit an exercise form:
+    1. Go to an exercise and select the edit button.
+    2. Try to choose a category and verify that the drop down menu works and the correct categories are rendered as options.
+    3. Try to edit an exercise name and verify that the user can add an exercise name.
+    4. Try to edit an exercise description and verify that the user can add an exercise description.
+    5. Try to submit the form with any empty fields and confirm an error message appears.
+    6. Try to submit and confirm that the exercise has been edited in the database.
+    7. Confirm user is redirected to the "My workouts" page.
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+7. Stopwatch:
+    1. Go to the Stopwatch page.
+    2. Confirm that the timer starts.
+    3. Try to stop the timer and confirm that the time stops.
+    4. Try to start the timer and confirm that the timer starts again.
+    5. Try to reset the timer and confirm that the time restes to zero.
+
+Manual testing was done on responsiveness of the site and I am pleased with the final result.
+
+## Bugs 
+An interesting bug I found was that if the user added an exercise with an empty form this caused the "My workout" page to stop rendering. I got around this by making all fields mandatory.
+
 
 ## Deployment
 
@@ -89,6 +131,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 - The svg body image from the home page was found on  [Code Pen](https://codepen.io/volcanioo/pen/RLXOar)
 - The stopwatch was found on [Code Pad](https://codepad.co/snippet/javascript-stopwatch-using-javascript-and-css)
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- I received inspiration for this project from an iphone app called workout.
 
 ### Media
 - The photos used in this site were obtained from [Pixabay](https://pixabay.com/)
