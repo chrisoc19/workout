@@ -1,5 +1,25 @@
-{% extends 'base.html'%} {% block content %}
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" sizes="32x32" href="static/css/favicon.png">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+<script type="text/javascript" src="static/javascript.js"></script>
+</head>
+
+<header>
+    
+        <nav>
+            <div class="nav-wrapper">
+            <a href="{{url_for('go_home')}}" class="brand-logo center"><IMG class="mirror" SRC="/static/css/favicon.png" ALT="Arm">Workout<IMG SRC="/static/css/favicon.png" ALT="Arm" ></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                
+                
+    </header>
 <body class="body-login">
 	<div class="login_page">
 		<div class="form">
@@ -38,24 +58,9 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script>
-	function sweet(){
-Swal.fire({
-  title: 'Invailed Username or Password',
-  text: "Please try again",
-  icon: 'warning'
- 
-})
-}
-    
 
-
-</script>
-
-<script>
+    <script>
 	$('.message a').click(function(){
     $('form').animate({height: "toggle", opacity: "toggle"},);
     });
 </script>
-{% endblock %}

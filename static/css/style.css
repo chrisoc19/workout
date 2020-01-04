@@ -75,10 +75,11 @@ nav {
 /* Index.html */
 
 .index{
-background: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url('training-828726_1920.jpg');
+background: url('training-828726_1920.jpg');
 height: 100vh;
 background-size: cover;
-background-position: center;
+background-position: center; 
+background-attachment: fixed;
 }
 .mirror {
   -webkit-transform: scaleX(-1);
@@ -133,12 +134,12 @@ background-position: center;
 .human-body svg.hands {
     margin-left: -102.5px;
     top: 224px;
-    
+    fill: #5f42de !important;
 }
 
 svg.hands:hover {
     
-     fill: #5f42de;
+     fill: #5f42de !important;
 }
 
 
@@ -171,7 +172,7 @@ background-position: center;
 .form input {
     font-family: "Roboto", sans-serif;
     font-size: 14px;
-    outline: 1;
+    outline: 1px;
     background: #f2f2f2;
     width: 100%;
     border: 0;
@@ -213,20 +214,6 @@ text-decoration: none;
 .register-form{
     display: none;
 }
-
-
-
-
-
-
-.watch-body {
-background-image: linear-gradient(rgba(5, 5, 5, 0), rgba(0,0,0,0.6)) ,url(picadd.jpg);
-height: 100vh;
-background-size: cover;
-background-position: center; 
-
-}
-
 
 
 .row .col {
@@ -304,6 +291,13 @@ img.responsive-img, video.responsive-video {
 
 
 /* watch */
+.watch-body {
+background-image: url(picadd.jpg);
+height: 100vh;
+background-size: cover;
+background-position: center; 
+
+}
 
 #start {
   margin: 40px auto;
@@ -341,11 +335,11 @@ img.responsive-img, video.responsive-video {
   cursor:pointer;
 }
 
-h2
-{
-  font-size: 46px;
-  letter-spacing: 2px;
-  margin: 200px 0 0 ;
+.h2-watch {
+    font-size: 46px;
+    letter-spacing: 2px;
+    color: white;
+    margin: 200px 0 0;
 }
 
 /* Card content*/

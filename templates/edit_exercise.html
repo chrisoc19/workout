@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3>Edit Exercise</h3>
-<div class="row container-edit">
+<div class="add-box">
+	<h3 class="h3-add">Edit Exercise</h3>
 	<form action="{{ url_for('update_exercise', exercise_id=exercise._id)}}" method="POST" class="col s12">
 		<div class="row">
 			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">poll</i>
-					<select id="category" name="category_name">
+				<div id="matfix" class="input-field col s12">
+					<i class="material-icons prefix left">poll</i>
+                        <select id="category" name="category_name" required>
                   <option value="" disabled selected>Choose Category</option>
                   {% for category in categories %}
                         {% if category.category_name == exercise.category_name %}
@@ -17,14 +17,14 @@
                         {% endif %}
                   {% endfor %}
                 </select>
-					<label>Task Category</label>
+					<label>Select Body Part</label>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">assignment</i>
-					<input id="exercise_name" name="exercise_name" type="text" class="validate" value="{{exercise.exercise_name}}">
+					<input id="exercise_name" name="exercise_name" type="text" class="validate" value="{{exercise.exercise_name}}" required/>
 					<label for="icon_prefix">Exercise Name</label>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">subject</i>
-					<textarea name="exercise_description" id="exercise_description" class="materialize-textarea">{{exercise.exercise_description}}</textarea>
+					<textarea name="exercise_description" id="exercise_description" class="materialize-textarea" required>{{exercise.exercise_description}}</textarea>
 					<label for="icon_telephone">Exercise Description</label>
 				</div>
 			</div>
@@ -44,7 +44,10 @@
                     <i class="material-icons right">send</i>
                         </button>
 			    </div>
+            
 	</form>
+
+</div>
 </div>
 
 {% endblock %}

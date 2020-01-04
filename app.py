@@ -8,21 +8,22 @@ from os import path
 if path.exists("env.py"):
     import env
 
-app = Flask(__name__)  
+app = Flask(__name__)
 
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME") 
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 
 
 mongo = PyMongo(app)
+
 
 @app.route('/error')
 def error():
     return render_template('error.html')
 
+
 # Login Page
 @app.route('/')
-
 @app.route('/login', methods=['POST', 'GET'])
 def log_in():
     if request.method == 'POST':
@@ -30,40 +31,32 @@ def log_in():
         login_user = users.find_one({'name': request.form['name']})
         bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
         print(request.form['name'])
-        
-
         if login_user:
-           
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = login_user["name"]
                 print("Actually got here")
                 print(session["username"])
-                print(request.form['pass'])  
+                print(request.form['pass'])
                 return redirect(url_for('go_home'))
-        flash('Invalid username or password')
-        
-           
+        flash('Invalid username or password')      
     return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = users.find_one({'name' : request.form['username']})
+        existing_user = users.find_one({'name': request.form['username']})
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one({'name' : request.form['username'], 'password' : hashpass})
+            users.insert_one({'name': request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
-            print( session['username'])
+            print(session['username'])
             print(hashpass)
             return redirect(url_for('go_home'))
 
         flash('That username already exsits')
-        
-
     return redirect("login")
 
 # Log out
@@ -78,18 +71,14 @@ def lo():
         print("No User")
         flash('Please login')
         return redirect("login")
-    
-
 
 # Home Page
-
 @app.route('/home_page')
 def go_home():
     try:
         if session["username"]:
             return render_template("index.html",
-                categories=mongo.db.categories.find()
-                )
+                categories=mongo.db.categories.find())
     except:
         print("No User")
     flash('Please login')
@@ -123,9 +112,7 @@ def insert_exercise():
     to_insert['session_user'] = session_user
     exercises.insert_one(to_insert)
 
-    return redirect(url_for("go_home"))
-
-
+    return redirect(url_for("profile"))
 
 
 # Updates the database
@@ -161,8 +148,8 @@ def delete(exercise_id):
     if exercise.find({"session_user": session['username']}).count() == 0:
         return redirect(url_for("add_exercise"))
     else:
+        flash('Deleted')
         return redirect(url_for("profile"))
-    
 
 # Removes exercise from the database
 @app.route('/delete_exercise/<exercise_id>')
@@ -174,6 +161,7 @@ def delete_exercise(exercise_id):
     if cat == "full body":
         cat = "full"
     mongo.db.exercise.delete_one({'_id': ObjectId(exercise_id)})
+    flash(' Deleted')
     return redirect(url_for(cat))
 
 # gets all categories
@@ -200,7 +188,6 @@ def edit_exercise(exercise_id):
 # -------------------------------------------- Body workouts
 
 # User profile
-
 @app.route('/profile')
 def profile():
     try:
@@ -217,7 +204,6 @@ def profile():
         print("No User")
 
     return redirect("login")
-   
 
 # Shoulder
 @app.route('/shoulders')
