@@ -26,7 +26,7 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 - Feature 4 - Home page - On the home page the user is met with a svg image of a body which lights up different body parts when hovering over them with the mouse and on click which take the user to that body part section.   
 - Feature 5 - Categories - On the Categories page the User is met with diffrent clickable images and on click which take the user to that body part section. This function is similar to the svg imageson the Home page.
 - Feature 6 - My Workouts - On the MY Workout page, the User is met with any exercises that User has added or edited. If this page is empty the user is redirected to the Add a workout page.
-- Feature 7 - Add a Exercise - On the Add a exercise page, The user is met with a form with three sections, A drop down menu where the user can choose which body part they want to add an exercise for, A short section to give the Exercise a name and a bigger section to add an exercise description. At the bottom of the form there is a submitbutton which adds the exercise to the database.
+- Feature 7 - Add a Exercise - On the Add a exercise page, The user is met with a form with three sections, A drop down menu where the user can choose which body part they want to add an exercise for, A short section to give the Exercise a name and a bigger section to add an exercise description. At the bottom of the form there is a submit button which adds the exercise to the database.
 - Feature 8 - Exercises - Once a User adds a workout they are displayed in a Materializecss Card and shows the Body part name it is realated to, the Username of who added it, the exercise name and the description. There are too buttons an edit and delete button.
 - Feature 9 - Edit an Exercise - If the user clicks on the edit button at the bottom of every exercise, they are taken to the edit workout page which has a form similar to Add a workout, the difference is that the edit form comes with some information already added as the user is updating an exercise not creating a new exercise.
 - Feature 10 - Delete an Exercise - If the user clicks on the delete button at the bottom of every exercise. A pop up message with a confirm button appears and if the user clicks ok the exercise is then removed from the database.
@@ -34,6 +34,9 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 - Feature 12 - Log out - If the user clicks on login/out in the nav bar it removes the session user redirects to the login page. The user then must log back in to access the site.
 ### Features Left to Implement
 - In the future I would like to add User restrictions, For example if the Session User is not the same as the user who added the exercise then that user will not be able to edit or delete the exercise.
+
+## Database Schema
+I chose to use a document-oriented database using [MongoDB](https://www.mongodb.com)for this web application. There are three collections, one called Categories, which holds which parts of the bodies you can add an exercise for, 'Exercise' which holds the exercise details and one  called 'users' to house user account details.
 
 ## Technologies Used
 
