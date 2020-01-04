@@ -42,15 +42,15 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 ## Database Schema
 I chose to use a document-oriented database using [MongoDB](https://www.mongodb.com)for this web application. There are three collections, one called Categories, which holds which parts of the bodies you can add an exercise for, 'Exercise' which holds the exercise details and one  called 'users' to house user account details.
 #### Categories
-![alt text](https://github.com/chrisoc19/workout/static/imgs/catDB.png  
+![alt text](static/imgs/catDB.png
 "recipes_schema")
 
 #### Exercises
-![alt text](https://github.com/chrisoc19/workout/static/imgs/exerciseDB.png 
+![alt text](static/imgs/exerciseDB.png 
 "user_accounts_schema")
 
 #### User Accounts
-![alt text](https://github.com/chrisoc19/workout/static/imgs/usersDB.png 
+![alt text](static/imgs/usersDB.png 
 "user_accounts_schema")
 ## Technologies Used
 
