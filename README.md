@@ -56,7 +56,15 @@ I chose to use a document-oriented database using [MongoDB](https://www.mongodb.
 
 ## Testing
 I conducted testing across different platforms and web browsers in order to make sure the website worked correctly and looked great across each one. I also asked friends and family to test across their own devices and to give me honest opinions and feedback.
+### Validation Services
+The following validation services and linter were used to check the validity of the website code.
 
+- [W3C Markup Validation](https://validator.w3.org/) was used to validate HTML.
+- [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)was used to validate CSS.
+- [JSHint](https://jshint.com/)was used to validate JavaScript.
+- [AmIReponsive](http://ami.responsivedesign.is/?url=https%3A%2F%2Fworkout-app-flask-mongo.herokuapp.com%2F)was used to test the sites responsiveness.
+
+### User Stories Testing
 Manual testing was conducted to ensure the user story objectives were achieved.
 1. login form:
     1. Go to the "login" page
