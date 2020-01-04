@@ -6,6 +6,11 @@ My wire frames were created in Balsamiq and can be found here:
 
 LINK MISSING
 
+I choose to design a simple yet elegant site.
+The navigation bar is responsive having break points for smaller, medium and large screens. The navigation links disappear on screen width below 992 pixels and a burger menu icon appears top left. When the burger icon is clicked, it brings a side navigation bar across from the left.
+When a user first visits the site they are presented with a clean simple login form with a link to a sign up form if they do not have an account. Leaving out a navigation bar and rendering the logo center just above the forms gives an elegant look and great first-impression.
+
+
 This website is aimed at a few different types of users:
 
 1. Users who want to be able to store an online copy of their own Workout routines.
@@ -33,11 +38,20 @@ The main Features of this website will be CRUD, so to be able to Create, Read, U
 - Feature 11 - Stop watch - On the Stop watch page, There is a simple javascript counter which the user can start, stop and reset the timer. I added this so the user can keep track of how long the exercise took to complete.
 - Feature 12 - Log out - If the user clicks on login/out in the nav bar it removes the session user redirects to the login page. The user then must log back in to access the site.
 ### Features Left to Implement
-- In the future I would like to add User restrictions, For example if the Session User is not the same as the user who added the exercise then that user will not be able to edit or delete the exercise.
-
+- In the future I would like to add a function that allows other users to add  other users exercises to their profile section "My Workout".
 ## Database Schema
 I chose to use a document-oriented database using [MongoDB](https://www.mongodb.com)for this web application. There are three collections, one called Categories, which holds which parts of the bodies you can add an exercise for, 'Exercise' which holds the exercise details and one  called 'users' to house user account details.
+#### Categories
+![alt text](https://github.com/chrisoc19/workout/static/images/catDB.png  
+"recipes_schema")
 
+#### Exercises
+![alt text](https://github.com/chrisoc19/workout/static/images/exerciseDB.png 
+"user_accounts_schema")
+
+#### User Accounts
+![alt text](https://github.com/chrisoc19/workout/static/images/usersDB.png 
+"user_accounts_schema")
 ## Technologies Used
 
 - [Python](https://www.python.org/)
