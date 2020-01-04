@@ -205,7 +205,7 @@ here to download and install [Heroku CLI](https://devcenter.heroku.com/articles/
         * MONGO_DBNAME: mongo dbname
         * IP: 0.0.0.0
         * PORT:	80
-4. Download the code from the Github repository [here](https://github.com/AnthonyNicklin/meat-free).
+4. Download the code from the Github repository [here](https://github.com/chrisoc19/workout).
 5. Click on _Clone_ or _download then Download ZIP_. This will download the code into a ZIP folder locally on your computer.
 6. Uncompress the ZIP folder.
 7. Open up a terminal or cmd prompt and login into Heroku CLI.
