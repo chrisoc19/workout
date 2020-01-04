@@ -4,7 +4,17 @@ This is a CRUD application, showcasing skills I have picked up whilst working wi
 ## UX
 My wire frames were created in Balsamiq and can be found here:
 
-LINK MISSING
+![alt text](static/imgs/homeMock.png 
+"Home Mock up")
+
+![alt text](static/imgs/exerciseMock.png 
+"Exercise Mock up)
+
+![alt text](static/imgs/watchMock.png 
+"StopWatch Mock up")
+
+![alt text](static/imgs/mock4.png 
+"contact page")
 
 I choose to design a simple yet elegant site.
 The navigation bar is responsive having break points for smaller, medium and large screens. The navigation links disappear on screen width below 992 pixels and a burger menu icon appears top left. When the burger icon is clicked, it brings a side navigation bar across from the left.
