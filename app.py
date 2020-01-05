@@ -212,6 +212,14 @@ def shoulders():
                            exercises=mongo.db.exercise.find({
                                "category_name": "Shoulders"}))
 
+# Grips
+@app.route('/grip')
+def grip():
+    all_users = mongo.db.users.find()
+    return render_template("grip.html",  users=all_users,
+                           exercises=mongo.db.exercise.find({
+                               "category_name": "grips"}))
+
 # Abs
 @app.route('/abs')
 def abs():

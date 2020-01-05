@@ -134,13 +134,9 @@ background-attachment: fixed;
 .human-body svg.hands {
     margin-left: -102.5px;
     top: 224px;
-    fill: #5f42de !important;
+   
 }
 
-svg.hands:hover {
-    
-     fill: #5f42de !important;
-}
 
 
 
