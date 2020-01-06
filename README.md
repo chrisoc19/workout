@@ -4,7 +4,7 @@ This is a CRUD application, showcasing skills I have picked up whilst working wi
 ## UX
 My wire frames were created in Balsamiq and can be found here:
 
-[wire Frames](https://www.mongodb.com)
+[wire Frames](https://github.com/chrisoc19/workout/tree/master/static/imgs/mockups)
 
 I choose to design a simple yet elegant site.
 The navigation bar is responsive having break points for smaller, medium and large screens. The navigation links disappear on screen width below 992 pixels and a burger menu icon appears top left. When the burger icon is clicked, it brings a side navigation bar across from the left.
