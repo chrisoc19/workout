@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <body class="watch-body">
-    <h2 class="h2-watch"><time>00:00:00</time></h2>
+<h2 class="h2-watch"><time>00:00:00</time></h2>
 <button id="start">START</button>
 <button id="stop">STOP</button>
 <button id="clear">RESET</button>
 	
  
 	<script>
-		var h1 = document.getElementsByTagName('h2')[0],
+    var h1 = document.getElementsByTagName('h2')[0],
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
@@ -33,7 +33,7 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-timer();
+
 
 
 /* Start button */
